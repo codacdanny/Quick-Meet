@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChakraProvider, Box, Grid, Heading, Flex } from '@chakra-ui/react';
+import { ChakraProvider, Box, Heading, Flex } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import StreamPage from './components/StreamPage';
 import theme from './theme';

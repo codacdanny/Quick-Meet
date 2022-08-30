@@ -1,6 +1,5 @@
-import { Box, Grid } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import { useState } from 'react';
-import { useInitContext } from '../functions/initContext';
 import JoinRoom from './JoinRoom';
 import VideoCall from './VideoCall';
 // import init from '../functions/init';

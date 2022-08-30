@@ -6,7 +6,7 @@ import {
   useClient,
   useMicAndVideoTracks,
 } from '../functions/agora-settings';
-import { initContext } from '../functions/initContext';
+
 import Controls from './Controls';
 import Video from './Video';
 
