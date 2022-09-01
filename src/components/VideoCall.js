@@ -25,6 +25,7 @@ const VideoCall = ({ setIncall, channelName }) => {
           setUsers(previousUsers => {
             return [...previousUsers, user];
           });
+          user.videoTrack.play();
         }
 
         if (mediaType === 'audio') {

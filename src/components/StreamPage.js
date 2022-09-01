@@ -7,6 +7,7 @@ import VideoCall from './VideoCall';
 const StreamPage = () => {
   const [inCall, setIncall] = useState(false);
   const [channelName, setChannelName] = useState('');
+  console.log(channelName);
 
   return (
     <Box h="100%">
