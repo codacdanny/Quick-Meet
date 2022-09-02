@@ -7,14 +7,17 @@ import VideoCall from './VideoCall';
 const StreamPage = () => {
   const [inCall, setIncall] = useState(false);
   const [channelName, setChannelName] = useState('');
-  console.log(channelName);
 
   return (
     <Box h="100%">
-      {inCall ? (
+      {inCall && channelName ? (
         <VideoCall setIncall={setIncall} channelName={channelName} />
       ) : (
-        <JoinRoom setIncall={setIncall} setChannelName={setChannelName} />
+        <JoinRoom
+          setIncall={setIncall}
+          setChannelName={setChannelName}
+          channelName={channelName}
+        />
       )}
     </Box>
 
