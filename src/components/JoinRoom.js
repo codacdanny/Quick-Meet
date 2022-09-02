@@ -12,11 +12,12 @@ import svg2 from '../images/5.svg';
 import React, { useState } from 'react';
 import { useClipboard } from '@chakra-ui/react';
 
-let random;
+let randomID;
 const JoinRoom = ({ setIncall, setChannelName, channelName }) => {
   const toast = useToast();
   //eslint-disable-next-line
   const [roomCheck, setRoomCheck] = useState(undefined);
+  const [joinRoomIDCheck, setJoinRoomIDCheck] = useState(false);
 
   const [value, setValue] = useState('');
   const { hasCopied, onCopy } = useClipboard(value);
@@ -39,18 +40,19 @@ const JoinRoom = ({ setIncall, setChannelName, channelName }) => {
   }
 
   // function toCopy() {
-  //   setValue(random);
+  //   setValue(ID);
   //   onCopy();
   // }
 
-  const genRand = () => {
-    random = Math.random()
+  const generateRandomID = () => {
+    randomID = Math.random()
       .toString(36)
       .substring(2, 10 + 2);
-    setChannelName(random);
-    setValue(random);
-    console.log(channelName);
-    return random;
+    setJoinRoomIDCheck(true);
+    setChannelName(randomID);
+    setValue(randomID);
+
+    return randomID;
   };
 
   return (
@@ -60,7 +62,7 @@ const JoinRoom = ({ setIncall, setChannelName, channelName }) => {
           <Button
             colorScheme="teal"
             width={{ base: '80%', bigger: 'auto' }}
-            onClick={genRand}
+            onClick={generateRandomID}
             // mr={{ base: '0', bigger: '4' }}
           >
             Create Room ID
@@ -75,8 +77,8 @@ const JoinRoom = ({ setIncall, setChannelName, channelName }) => {
           borderStyle="solid"
           justifyContent="space-between"
         >
-          <Text size="lg">{random}</Text>
-          {random && (
+          <Text size="lg">{randomID}</Text>
+          {randomID && (
             <Button onClick={onCopy} ml={2}>
               {hasCopied ? 'Copied' : 'Copy'}
             </Button>
@@ -88,7 +90,7 @@ const JoinRoom = ({ setIncall, setChannelName, channelName }) => {
           variant="filled"
           size="lg"
           my={5}
-          value={random}
+          value={randomID}
         /> */}
       </Flex>
       <Text my={4}>OR</Text>
@@ -102,6 +104,7 @@ const JoinRoom = ({ setIncall, setChannelName, channelName }) => {
           <Text colorScheme="teal">Join with ID</Text>
         </Box>
         <Input
+          isReadOnly={joinRoomIDCheck}
           placeholder="Enter Room ID"
           onChange={e => setChannelName(e.target.value)}
           variant="filled"
