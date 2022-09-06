@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Center } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 
 import {
@@ -74,14 +74,18 @@ const VideoCall = ({ setIncall, channelName }) => {
   }, [channelName, client, ready, tracks]);
 
   return (
-    <Box h="100%">
-      <Box h="100%">
-        {start && tracks && <Video tracks={tracks} users={users} />}
-      </Box>
+    <Box>
+      <Box>{start && tracks && <Video tracks={tracks} users={users} />}</Box>
 
-      <Box>
+      <Box position="sticky" bottom="5">
         {ready && tracks && (
-          <Controls tracks={tracks} setStart={setStart} setIncall={setIncall} />
+          <Center>
+            <Controls
+              tracks={tracks}
+              setStart={setStart}
+              setIncall={setIncall}
+            />
+          </Center>
         )}
       </Box>
     </Box>

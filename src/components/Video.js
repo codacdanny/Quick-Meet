@@ -7,26 +7,53 @@ import {
   SimpleGrid,
 } from '@chakra-ui/react';
 import { AgoraVideoPlayer } from 'agora-rtc-react';
-import { useEffect, useState } from 'react';
+// import { useState } from 'react';
 const Video = ({ tracks, users }) => {
-  const [gridSpacing, setGridSpacing] = useState(12);
-
-  useEffect(() => {
-    // setGridSpacing(Math.max(Math.floor(12 / (users.length + 1)), 4));
-    setGridSpacing((users.length + 1) % 4);
-  }, [users, tracks]);
+  // useEffect(() => {
+  //   // setGridSpacing(Math.max(Math.floor(12 / (users.length + 1)), 4));
+  //   setGridSpacing((users.length + 1) % 4);
+  // }, [users, tracks]);
 
   return (
-    <SimpleGrid columns={gridSpacing} spacing={10} height="100vh">
-      <AgoraVideoPlayer videoTrack={tracks[1]} />
-      {users.length > 0 &&
+    <SimpleGrid
+      // minChildWidth="45%"
+      columns={2}
+      row={users.length % 2 === 0 ? users.length / 2 : (users.length + 1) / 2}
+      spacing={2}
+      height="100vh"
+      width="100%"
+      margin="0 auto"
+    >
+      <AgoraVideoPlayer videoTrack={tracks[1]} style={{ height: '100%' }} />
+
+      {/* <AgoraVideoPlayer videoTrack={tracks[1]} style={{ height: '90%' }} /> */}
+      {users.length >= 0 &&
         users.map(user => {
           if (user.videoTrack) {
+            console.log(
+              users.length + ' 22222222222222222222222222222222222222'
+            );
             return (
-              <AgoraVideoPlayer videoTrack={user.videoTrack} key={user.uid} />
+              <AgoraVideoPlayer
+                videoTrack={user.videoTrack}
+                key={user.uid}
+                // style={{ height: '50%' }}
+              />
             );
           } else return null;
         })}
+      {/* {users.length > 1 &&
+        users.map(user => {
+          if (user.videoTrack) {
+            return (
+              <AgoraVideoPlayer
+                videoTrack={user.videoTrack}
+                key={user.uid}
+                style={{ height: '45%', width: '45%' }}
+              />
+            );
+          } else return null;
+        })} */}
     </SimpleGrid>
 
     // <Grid>
