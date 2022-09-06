@@ -18,7 +18,13 @@ const Video = ({ tracks, users }) => {
   return (
     <SimpleGrid
       // minChildWidth="45%"
-      columns={users.length <= 1 || windowWidth < 700 ? 1 : 2}
+      columns={
+        users.length <= 1 && windowWidth < 700
+          ? 1
+          : users.length === 0 && windowWidth > 700
+          ? 1
+          : 2
+      }
       row={users.length % 2 === 0 ? users.length / 2 : (users.length + 1) / 2}
       spacing={2}
       height="100vh"
