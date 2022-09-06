@@ -74,8 +74,10 @@ const VideoCall = ({ setIncall, channelName }) => {
   }, [channelName, client, ready, tracks]);
 
   return (
-    <Box>
-      <Box>{start && tracks && <Video tracks={tracks} users={users} />}</Box>
+    <Box h="100%">
+      <Box h="100%">
+        {start && tracks && <Video tracks={tracks} users={users} />}
+      </Box>
 
       <Box position="sticky" bottom="5">
         {ready && tracks && (

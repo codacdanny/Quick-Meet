@@ -51,7 +51,7 @@ const JoinRoom = ({ setIncall, setChannelName, channelName }) => {
     setJoinRoomIDCheck(true);
     setChannelName(randomID);
     setValue(randomID);
-
+    console.log(window.innerWidth);
     return randomID;
   };
 
