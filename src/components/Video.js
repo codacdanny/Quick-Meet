@@ -34,8 +34,16 @@ const Video = ({ tracks, users }) => {
     >
       <AgoraVideoPlayer videoTrack={tracks[1]} style={{ height: '100%' }} />
 
-      {/* <AgoraVideoPlayer videoTrack={tracks[1]} style={{ height: '90%' }} /> */}
-      {users.length >= 0 &&
+      {users.length > 0 &&
+        users.length < 2 &&
+        users.map(user => {
+          if (user.videoTrack) {
+            return (
+              <AgoraVideoPlayer videoTrack={user.videoTrack} key={user.uid} />
+            );
+          } else return null;
+        })}
+      {users.length >= 2 &&
         users.map(user => {
           if (user.videoTrack) {
             return (
@@ -47,6 +55,7 @@ const Video = ({ tracks, users }) => {
             );
           } else return null;
         })}
+
       {/* {users.length > 1 &&
         users.map(user => {
           if (user.videoTrack) {
