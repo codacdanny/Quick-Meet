@@ -1,19 +1,30 @@
-import { Button, Flex } from '@chakra-ui/react';
+import { Button, ButtonGroup, Flex } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useClient } from '../functions/agora-settings';
+import { AiFillAudio } from 'react-icons/ai';
+import { FaPhoneSlash } from 'react-icons/fa';
 
+import { MdScreenShare, MdStopScreenShare } from 'react-icons/md';
+
+import { BiMicrophoneOff, BiVideoOff, BiVideo } from 'react-icons/bi';
 const Controls = ({ tracks, setStart, setIncall }) => {
   const [trackState, setTrackState] = useState({ video: true, audio: true });
   const client = useClient();
 
+  const [audioButton, setAudioButton] = useState(trackState.audio);
+  const [videoButton, setVideoButton] = useState(trackState.video);
+  // const [leaveButton, setLeaveButton] = useState(false);
+
   const mute = async mediaType => {
     if (mediaType === 'audio') {
       await tracks[0].setEnabled(!trackState.audio);
+      setAudioButton(!trackState.audio);
       setTrackState(previousUsers => {
         return { ...previousUsers, audio: !previousUsers.audio };
       });
     } else if (mediaType === 'video') {
       await tracks[1].setEnabled(!trackState.video);
+      setVideoButton(!trackState.video);
       setTrackState(previousUsers => {
         return { ...previousUsers, video: !previousUsers.video };
       });
@@ -30,10 +41,31 @@ const Controls = ({ tracks, setStart, setIncall }) => {
   };
 
   return (
-    <Flex>
-      <Button onClick={() => mute('audio')}> mute Audio</Button>
-      <Button onClick={() => mute('video')}> mute video</Button>
-      <Button onClick={leaveChannel}> leave</Button>
+    <Flex width={{ base: '70%', lg: '30%' }}>
+      <ButtonGroup display="flex" justifyContent="space-around" width="100%">
+        <Button
+          onClick={() => mute('audio')}
+          colorScheme="teal"
+          fontSize={{ base: '20px', bigger: '24px', lg: '30px' }}
+        >
+          {audioButton ? <AiFillAudio /> : <BiMicrophoneOff />}
+        </Button>
+        <Button
+          onClick={() => mute('video')}
+          colorScheme="teal"
+          fontSize={{ base: '20px', bigger: '24px', lg: '30px' }}
+        >
+          {videoButton ? <BiVideo /> : <BiVideoOff />}
+        </Button>
+        <Button
+          onClick={leaveChannel}
+          colorScheme="red"
+          fontSize={{ base: '20px', bigger: '24px', lg: '30px' }}
+        >
+          {' '}
+          <FaPhoneSlash />{' '}
+        </Button>
+      </ButtonGroup>
     </Flex>
   );
 };

@@ -5,6 +5,7 @@ import {
   config,
   useClient,
   useMicAndVideoTracks,
+  useScreenShare,
 } from '../functions/agora-settings';
 
 import Controls from './Controls';
@@ -13,6 +14,7 @@ import Video from './Video';
 const VideoCall = ({ setIncall, channelName }) => {
   const client = useClient();
   const { ready, tracks } = useMicAndVideoTracks();
+
   const [start, setStart] = useState(false);
   const [users, setUsers] = useState([]);
 
@@ -67,6 +69,7 @@ const VideoCall = ({ setIncall, channelName }) => {
     if (ready && tracks) {
       try {
         init(channelName);
+        console.log(tracks);
       } catch (error) {
         console.log(error);
       }

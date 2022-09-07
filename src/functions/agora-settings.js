@@ -1,4 +1,8 @@
-import { createClient, createMicrophoneAndCameraTracks } from 'agora-rtc-react';
+import {
+  createClient,
+  createMicrophoneAndCameraTracks,
+  createScreenVideoTrack,
+} from 'agora-rtc-react';
 
 const appID = process.env.REACT_APP_AGORA_APP_ID;
 const token = null;
@@ -11,4 +15,6 @@ export const config = {
 };
 
 export const useClient = createClient(config);
+
 export const useMicAndVideoTracks = createMicrophoneAndCameraTracks();
+export const useScreenShare = createScreenVideoTrack();

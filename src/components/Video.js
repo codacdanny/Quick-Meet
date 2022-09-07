@@ -26,10 +26,11 @@ const Video = ({ tracks, users }) => {
           : 2
       }
       row={users.length % 2 === 0 ? users.length / 2 : (users.length + 1) / 2}
-      spacing={2}
+      spacing={1.5}
       height="100vh"
       width="100%"
       margin="0 auto"
+      overflowY="scroll"
     >
       <AgoraVideoPlayer videoTrack={tracks[1]} style={{ height: '100%' }} />
 
@@ -41,7 +42,7 @@ const Video = ({ tracks, users }) => {
               <AgoraVideoPlayer
                 videoTrack={user.videoTrack}
                 key={user.uid}
-                // style={{ height: '50%' }}
+                style={{ minHeight: '48vh' }}
               />
             );
           } else return null;
