@@ -1,8 +1,10 @@
 import React from 'react';
 import { ChakraProvider, Box, Heading, Flex } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
+import { Route, Routes } from 'react-router-dom';
 import StreamPage from './components/StreamPage';
 import theme from './theme';
+import ScreenShare from './components/ScreenShare';
 
 function App() {
   return (
@@ -22,7 +24,9 @@ function App() {
           </Heading>
           <ColorModeSwitcher justifySelf="flex-end" />
         </Flex>
-
+        <Routes>
+          <Route path="/sharePage" element={<ScreenShare />} />
+        </Routes>
         <StreamPage />
       </Box>
     </ChakraProvider>

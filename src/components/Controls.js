@@ -1,19 +1,27 @@
 import { Button, ButtonGroup, Flex } from '@chakra-ui/react';
 import { useState } from 'react';
-import { useClient } from '../functions/agora-settings';
+import { useClient, useScreenShare } from '../functions/agora-settings';
 import { AiFillAudio } from 'react-icons/ai';
 import { FaPhoneSlash } from 'react-icons/fa';
-
+import ScreenShare from './ScreenShare';
 import { MdScreenShare, MdStopScreenShare } from 'react-icons/md';
-
 import { BiMicrophoneOff, BiVideoOff, BiVideo } from 'react-icons/bi';
+import { useNavigate } from 'react-router-dom';
+
 const Controls = ({ tracks, setStart, setIncall }) => {
+  const navigate = useNavigate();
+
   const [trackState, setTrackState] = useState({ video: true, audio: true });
   const client = useClient();
 
   const [audioButton, setAudioButton] = useState(trackState.audio);
   const [videoButton, setVideoButton] = useState(trackState.video);
   // const [leaveButton, setLeaveButton] = useState(false);
+
+  // const shareScreen = async ()=> {
+  //    const client = useClient();
+  //    const { ready, tracks } = useScreenShare();
+  // }
 
   const mute = async mediaType => {
     if (mediaType === 'audio') {
@@ -64,6 +72,9 @@ const Controls = ({ tracks, setStart, setIncall }) => {
         >
           {' '}
           <FaPhoneSlash />{' '}
+        </Button>
+        <Button onClick={() => navigate('/sharePage')}>
+          <MdScreenShare />
         </Button>
       </ButtonGroup>
     </Flex>
