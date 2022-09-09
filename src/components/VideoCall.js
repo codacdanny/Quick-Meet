@@ -5,7 +5,6 @@ import {
   config,
   useClient,
   useMicAndVideoTracks,
-  useScreenShare,
 } from '../functions/agora-settings';
 
 import Controls from './Controls';
@@ -17,7 +16,7 @@ const VideoCall = ({ setIncall, channelName }) => {
 
   const [start, setStart] = useState(false);
   const [users, setUsers] = useState([]);
-
+  console.log('the tracks:', tracks, 'is ready:', ready, 'the client:', client);
   useEffect(() => {
     let init = async name => {
       client.on('user-published', async (user, mediaType) => {
@@ -69,7 +68,6 @@ const VideoCall = ({ setIncall, channelName }) => {
     if (ready && tracks) {
       try {
         init(channelName);
-        console.log(tracks);
       } catch (error) {
         console.log(error);
       }
@@ -87,8 +85,8 @@ const VideoCall = ({ setIncall, channelName }) => {
           <Center>
             <Controls
               tracks={tracks}
-              setStart={setStart}
               setIncall={setIncall}
+              setStart={setStart}
             />
           </Center>
         )}

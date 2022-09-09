@@ -1,10 +1,16 @@
 import React from 'react';
-import { ChakraProvider, Box, Heading, Flex } from '@chakra-ui/react';
+import {
+  ChakraProvider,
+  Box,
+  Heading,
+  Flex,
+  Link,
+  Text,
+} from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Route, Routes } from 'react-router-dom';
+import { DiGithubBadge } from 'react-icons/di';
 import StreamPage from './components/StreamPage';
 import theme from './theme';
-import ScreenShare from './components/ScreenShare';
 
 function App() {
   return (
@@ -20,13 +26,16 @@ function App() {
           borderColor="teal.200"
         >
           <Heading as="h1" color="teal.600" justifySelf="flex-start">
-            Quick Meet
+            <Link isExternal href="https://github.com/codacdanny/Quick-Meet">
+              <Flex justify="center" alignItems="center">
+                <Text> Quick Meet</Text>
+                <DiGithubBadge />
+              </Flex>
+            </Link>
           </Heading>
           <ColorModeSwitcher justifySelf="flex-end" />
         </Flex>
-        <Routes>
-          <Route path="/sharePage" element={<ScreenShare />} />
-        </Routes>
+
         <StreamPage />
       </Box>
     </ChakraProvider>
