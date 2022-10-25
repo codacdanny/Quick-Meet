@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useClient } from '../functions/agora-settings';
 import { AiFillAudio } from 'react-icons/ai';
 import { FaPhoneSlash } from 'react-icons/fa';
-// import ScreenShare from './ScreenShare';
 import { BiMicrophoneOff, BiVideoOff, BiVideo } from 'react-icons/bi';
 
 const Controls = ({ tracks, setStart, setIncall }) => {
@@ -12,12 +11,6 @@ const Controls = ({ tracks, setStart, setIncall }) => {
 
   const [audioButton, setAudioButton] = useState(trackState.audio);
   const [videoButton, setVideoButton] = useState(trackState.video);
-  // const [leaveButton, setLeaveButton] = useState(false);
-
-  // const shareScreen = async ()=> {
-  //    const client = useClient();
-  //    const { ready, tracks } = useScreenShare();
-  // }
 
   const mute = async mediaType => {
     if (mediaType === 'audio') {
@@ -69,10 +62,6 @@ const Controls = ({ tracks, setStart, setIncall }) => {
           {' '}
           <FaPhoneSlash />{' '}
         </Button>
-        {/* <ScreenShare
-          setScreenShare={setScreenShare}
-          screenShare={screenShare}
-        /> */}
       </ButtonGroup>
     </Flex>
   );

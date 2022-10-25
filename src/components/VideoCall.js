@@ -15,8 +15,9 @@ const VideoCall = ({ setIncall, channelName }) => {
   const { ready, tracks } = useMicAndVideoTracks();
 
   const [start, setStart] = useState(false);
+
   const [users, setUsers] = useState([]);
-  console.log('the tracks:', tracks, 'is ready:', ready, 'the client:', client);
+
   useEffect(() => {
     let init = async name => {
       client.on('user-published', async (user, mediaType) => {

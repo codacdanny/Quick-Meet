@@ -7,7 +7,7 @@ import {
   Text,
   useToast,
 } from '@chakra-ui/react';
-// import svg from '../images/conference.svg';
+
 import svg2 from '../images/5.svg';
 import React, { useState } from 'react';
 import { useClipboard } from '@chakra-ui/react';
@@ -39,11 +39,6 @@ const JoinRoom = ({ setIncall, setChannelName, channelName }) => {
     }
   }
 
-  // function toCopy() {
-  //   setValue(ID);
-  //   onCopy();
-  // }
-
   const generateRandomID = () => {
     randomID = Math.random()
       .toString(36)
@@ -51,7 +46,7 @@ const JoinRoom = ({ setIncall, setChannelName, channelName }) => {
     setJoinRoomIDCheck(true);
     setChannelName(randomID);
     setValue(randomID);
-    console.log(window.innerWidth);
+
     return randomID;
   };
 
@@ -63,7 +58,6 @@ const JoinRoom = ({ setIncall, setChannelName, channelName }) => {
             colorScheme="teal"
             width={{ base: '80%', bigger: 'auto' }}
             onClick={generateRandomID}
-            // mr={{ base: '0', bigger: '4' }}
           >
             Create Room ID
           </Button>
@@ -84,14 +78,6 @@ const JoinRoom = ({ setIncall, setChannelName, channelName }) => {
             </Button>
           )}
         </Flex>
-        {/* <Input
-          placeholder="Click to generate ID"
-          // onChange={e => setChannelName(e.target.value)}
-          variant="filled"
-          size="lg"
-          my={5}
-          value={randomID}
-        /> */}
       </Flex>
       <Text my={4}>OR</Text>
       <Flex
